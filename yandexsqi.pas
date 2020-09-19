@@ -184,7 +184,7 @@ begin
   try
     if not PNGToCanvas(aStream, aCanvasOut) then
       Exit(0);
-    aImageOut.SaveToFile('~temp.png');
+    //aImageOut.SaveToFile('~temp.png');
     for i:=0 to xWidth-1 do
     begin
       s:=EmptyStr;
@@ -253,7 +253,7 @@ begin
   aStream:=TMemoryStream.Create;
   try
     FHTTP.Get(Format('https://yandex.ru/cycounter?%s', [FDomainName]), aStream);
-    aStream.SaveToFile(Format('%s.png', [FDomainName]));  // Debug... to-do: delete
+    //aStream.SaveToFile(Format('%s.png', [FDomainName]));  // Debug... to-do: delete
     FResultValue:=PNGToSQIValue(aStream);
   finally
     aStream.Free;
