@@ -1,11 +1,11 @@
 # YandexSQIParser
 Yandex SQI parser for FreePascal
-Парсинг ИКС Яндекса для FreePascal
+РџР°СЂСЃРёРЅРі РРљРЎ РЇРЅРґРµРєСЃР° РґР»СЏ FreePascal
 
 Main unit `yandexsqi.pas`. Parser class `TYandexSQIParser`. Procedure style function is `sqi(aDomainName): Integer;`. 
 
 You can use both the native HTTP client using the `fclhttpclientbroker.pas` and the synapse lib using the `synapsehttpclientbroker.pas`.
 
-Главный модуль `yandexsqi.pas`. Класс парсера `TYandexSQIParser`. Функция для процедурного стиля - `sqi(aDomainName): Integer;`
+Р“Р»Р°РІРЅС‹Р№ РјРѕРґСѓР»СЊ `yandexsqi.pas`. РљР»Р°СЃСЃ РїР°СЂСЃРµСЂР° `TYandexSQIParser`. Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕС†РµРґСѓСЂРЅРѕРіРѕ СЃС‚РёР»СЏ - `sqi(aDomainName): Integer;`
 
-Вы можете использовать как нативный HTTP клиент с помощью брокера `fclhttpclientbroker.pas`, так и синапс библиотеку с помощью `synapsehttpclientbroker.pas`.
+Р’С‹ РјРѕР¶РµС‚Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєР°Рє РЅР°С‚РёРІРЅС‹Р№ HTTP РєР»РёРµРЅС‚ СЃ РїРѕРјРѕС‰СЊСЋ Р±СЂРѕРєРµСЂР° `fclhttpclientbroker.pas`, С‚Р°Рє Рё СЃРёРЅР°РїСЃ Р±РёР±Р»РёРѕС‚РµРєСѓ СЃ РїРѕРјРѕС‰СЊСЋ `synapsehttpclientbroker.pas`.
