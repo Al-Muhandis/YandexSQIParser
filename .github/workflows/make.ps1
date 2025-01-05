@@ -72,7 +72,7 @@ Function Build-Project {
                     $exitCode = Switch ($LastExitCode) {
                         0 {0}
                         Default {
-                            $Result | Out-Host
+                            $Output | Out-Host
                             1
                         }
                     }
