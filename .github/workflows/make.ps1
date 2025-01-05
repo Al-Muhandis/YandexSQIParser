@@ -36,7 +36,6 @@ Function Build-Project {
     } | ForEach-Object {
         $_.Url | Request-File | Install-Program
         $Env:PATH+=";$($_.Path)"
-        & lazbuild --help | Out-Host
         Return (Get-Command $_.Cmd).Source
     } | Out-Host
     $VAR.Pkg | ForEach-Object {
@@ -84,7 +83,7 @@ Function Build-Project {
     }) + (
         (Get-ChildItem -Filter '*.lpi' -Recurse -File –Path $Var.app).FullName |
             ForEach-Object {
-                New-Variable -Option Constant -Name OUTPUT -Value (& lazbuild --build-all --recursive --no-write-project $_)
+                New-Variable -Name OUTPUT -Value (& lazbuild --build-all --recursive --no-write-project $_)
                 New-Variable -Name Result -Value @()
                 New-Variable -Name exitCode -Value $(Switch ($LastExitCode) {
                     0 {
