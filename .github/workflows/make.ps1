@@ -89,15 +89,13 @@ Function Build-Project {
         (Get-ChildItem -Filter '*.lpi' -Recurse -File –Path $Var.app).FullName |
             ForEach-Object {
                 $Output = (& lazbuild --build-all --recursive --no-write-project $_)
-                $Result = @()
+                $Result = @("$([char]27)[32m.... [$($LastExitCode)] build project $($_)$([char]27)[0m")
                 $exitCode = $(Switch ($LastExitCode) {
                     0 {
-                        $Result += @("$([char]27)[32m.... [$($LastExitCode)] build project $($_)$([char]27)[0m")
                         $Result += $Output | Select-String -Pattern 'Linking'
                         0
                     }
                     Default {
-                        $Result += @("$([char]27)[31m.... [$($LastExitCode)] build project $($_)$([char]27)[0m")
                         $Result += $Output | Select-String -Pattern 'Error:', 'Fatal:'
                         1
                     }
