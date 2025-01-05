@@ -51,6 +51,7 @@ Function Build-Project {
         ! (& lazbuild --add-package $_.Name)
     } | ForEach-Object -Parallel {
         Invoke-WebRequest -OutFile $_.OutFile -Uri $_.Uri
+        New-Item -Type Directory -Path $_.Path
         Expand-Archive -Path $_.OutFile -DestinationPath $_.Path
         Remove-Item $_.OutFile
         Return "$([char]27)[33m.... download $($_.Uri)$([char]27)[0m"
@@ -67,7 +68,7 @@ Function Build-Project {
             ((Get-ChildItem -Filter '*.lpk' -Recurse -File –Path $Var.tst).FullName |
                 ForEach-Object {
                     $Env:INSTANTFPC = $VAR.opt
-                    New-Variable -Option Constant -Name OUTPUT -Value (& instantfpc $_ --all)
+                    $Output = (& instantfpc $_ --all --format=plain)
                     $exitCode = Switch ($LastExitCode) {
                         0 {0}
                         Default {
@@ -83,17 +84,17 @@ Function Build-Project {
     }) + (
         (Get-ChildItem -Filter '*.lpi' -Recurse -File –Path $Var.app).FullName |
             ForEach-Object {
-                New-Variable -Name OUTPUT -Value (& lazbuild --build-all --recursive --no-write-project $_)
-                New-Variable -Name Result -Value @()
-                New-Variable -Name exitCode -Value $(Switch ($LastExitCode) {
+                $Output = (& lazbuild --build-all --recursive --no-write-project $_)
+                $Result = @()
+                $exitCode = $(Switch ($LastExitCode) {
                     0 {
                         $Result += @("$([char]27)[32m.... [$($LastExitCode)] build project $($_)$([char]27)[0m")
-                        $Result += $OUTPUT | Select-String -Pattern 'Linking'
+                        $Result += $Output | Select-String -Pattern 'Linking'
                         0
                     }
                     Default {
                         $Result += @("$([char]27)[31m.... [$($LastExitCode)] build project $($_)$([char]27)[0m")
-                        $Result += $OUTPUT | Select-String -Pattern 'Error:', 'Fatal:'
+                        $Result += $Output | Select-String -Pattern 'Error:', 'Fatal:'
                         1
                     }
                 })
