@@ -51,10 +51,14 @@ Function Build-Project {
         ! (& lazbuild --add-package $_.Name)
     } | ForEach-Object -Parallel {
         Invoke-WebRequest -OutFile $_.OutFile -Uri $_.Uri
-        New-Item -Type Directory -Path $_.Path
+        New-Item -Type Directory -Path $_.Path | Out-Null
         Expand-Archive -Path $_.OutFile -DestinationPath $_.Path
         Remove-Item $_.OutFile
-        Return "$([char]27)[33m.... download $($_.Uri)$([char]27)[0m"
+        (Get-ChildItem -Filter '*.lpk' -Recurse -File –Path $_.Path).FullName |
+            ForEach-Object {
+                & lazbuild --add-package-link $_ | Out-Null
+                Return "$([char]27)[33m.... [$($LastExitCode)] add package link $($_)$([char]27)[0m"
+            }
     } | Out-Host
     If (Test-Path -Path $VAR.lib) {
         (Get-ChildItem -Filter '*.lpk' -Recurse -File –Path $VAR.lib).FullName |
