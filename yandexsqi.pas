@@ -39,7 +39,7 @@ uses
   ;
 
 const
-  xFrom=26;
+  xFrom=30;
   yFrom=10;
   xWidth=56;
   yHeight=11;
@@ -191,7 +191,7 @@ begin
       for j:=0 to yHeight-1 do
       begin
         aColor:=FPColorToTColor(aImageOut.Colors[i, j]);
-        s+=IfThen($878787=Integer(aColor), '.', 'x');
+        s+=IfThen($dadada=Integer(aColor), '.', 'x');
       end;
       if S<>'...........' then
         aRaws.Add(S);
@@ -252,8 +252,8 @@ begin
   FResultValue:=rvUnknown;
   aStream:=TMemoryStream.Create;
   try
-    FHTTP.Get(Format('https://yandex.ru/cycounter?%s', [FDomainName]), aStream);
-    //aStream.SaveToFile(Format('%s.png', [FDomainName]));  // Debug... to-do: delete
+    FHTTP.Get(Format('https://yandex.ru/cycounter?%s&theme=light&lang=ru', [FDomainName]), aStream);
+//    {$IFDEF DEBUG}aStream.Position:=0; aStream.SaveToFile(Format('%s.png', [FDomainName]));  {$ENDIF} // Debug... to-do: delete
     FResultValue:=PNGToSQIValue(aStream);
   finally
     aStream.Free;
