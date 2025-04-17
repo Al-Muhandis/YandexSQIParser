@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="5">
+    <PathDelim Value="\"/>
+    <Name Value="yandexsqiparser"/>
+    <Type Value="RunTimeOnly"/>
+    <Author Value="Suleymanov Renat, https://github.com/Al-Muhandis/"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Description Value="Yandex SQI Parser"/>
+    <License Value="MIT"/>
+    <Version Release="1"/>
+    <Files>
+      <Item>
+        <Filename Value="yandexsqi.pas"/>
+        <UnitName Value="yandexsqi"/>
+      </Item>
+      <Item>
+        <Filename Value="fclhttpclientbroker.pas"/>
+        <UnitName Value="fclhttpclientbroker"/>
+      </Item>
+    </Files>
+    <RequiredPkgs>
+      <Item>
+        <PackageName Value="LCLBase"/>
+      </Item>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

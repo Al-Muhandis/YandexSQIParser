@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <PathDelim Value="\"/>
     <General>
+      <Flags>
+        <CompatibilityMode Value="True"/>
+      </Flags>
       <SessionStorage Value="InProjectDir"/>
-      <MainUnit Value="0"/>
       <Title Value="gui"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
@@ -22,7 +24,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\..\foxwhois;.."/>
+            <OtherUnitFiles Value="..\..\foxwhois"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -63,7 +65,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\..\sqiparser\tests;.."/>
+            <OtherUnitFiles Value="..\..\sqiparser\tests"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -92,20 +94,22 @@
     </PublishOptions>
     <RunParams>
       <FormatVersion Value="2"/>
-      <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="3">
+    <RequiredPackages Count="4">
       <Item1>
-        <PackageName Value="fpcunittestrunner"/>
+        <PackageName Value="yandexsqiparser"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="fpcunittestrunner"/>
       </Item2>
       <Item3>
-        <PackageName Value="FCL"/>
+        <PackageName Value="LCL"/>
       </Item3>
+      <Item4>
+        <PackageName Value="FCL"/>
+      </Item4>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="2">
       <Unit0>
         <Filename Value="gui.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -114,10 +118,6 @@
         <Filename Value="testyandexsqi.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit1>
-      <Unit2>
-        <Filename Value="..\yandexsqi.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit2>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -128,10 +128,13 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\..\sqiparser\tests;.."/>
+      <OtherUnitFiles Value="..\..\sqiparser\tests"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsDwarf3"/>
+      </Debugging>
       <Options>
         <Win32>
           <GraphicApplication Value="True"/>
