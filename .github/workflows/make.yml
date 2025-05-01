@@ -1,9 +1,8 @@
----
 name: Make
 
 on:
   schedule:
-    - cron:  '0 0 1 * *'
+    - cron: '0 0 1 * *'
   push:
     branches:
       - "**"
@@ -29,7 +28,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        submodules: true
+        submodules: recursive
+        fetch-depth: 0
+
+    - name: Initialize YandexSQIParser submodule
+      run: |
+        if [ ! -d "use/YandexSQIParser" ]; then
+          git submodule add https://github.com/Al-Muhandis/YandexSQIParser.git use/YandexSQIParser
+        fi
+        git submodule update --init --recursive --force --remote
 
     - name: Build on Linux
       if: runner.os == 'Linux'
