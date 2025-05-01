@@ -29,6 +29,16 @@ function priv_lazbuild
         exit 1
     fi >&2
     if [[ -f '.gitmodules' ]]; then
+        printf '\x1b[33m\t[INFO] Initializing submodules...\x1b[0m\n' >&2
+        
+        # Check if YandexSQIParser submodule exists
+        if ! grep -q "YandexSQIParser" .gitmodules; then
+            printf '\x1b[33m\t[INFO] Adding YandexSQIParser submodule...\x1b[0m\n' >&2
+            git submodule add https://github.com/Al-Muhandis/YandexSQIParser.git "${VAR[lib]}/YandexSQIParser" || true
+        fi
+        
+        # Update submodules
+        git submodule sync --recursive
         git submodule update --init --recursive --force --remote &
     fi
     if ! (command -v lazbuild); then
