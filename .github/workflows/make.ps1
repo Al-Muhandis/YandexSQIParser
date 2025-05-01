@@ -22,7 +22,6 @@ Function Build-Project {
         Exit 1
     }
     If (Test-Path -Path '.gitmodules') {
-        & git submodule add https://github.com/Al-Muhandis/YandexSQIParser.git use/YandexSQIParser 2>$null
         & git submodule update --init --recursive --force --remote | Out-Host
         "$([char]27)[33m.... [[$($LastExitCode)]] git submodule update$([char]27)[0m" | Out-Host
     }
