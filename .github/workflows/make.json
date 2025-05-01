@@ -4,7 +4,7 @@
     "tst" : "tst",
     "opt" : "",
     "pkg" : [
-        "Synapse40.1",
+        "laz_synapse",
         "yandexsqiparser"
     ]
 }
