@@ -32,7 +32,7 @@ jobs:
         fetch-depth: 0
 
     - name: Initialize YandexSQIParser submodule
-      if: runner.os == 'Linux'
+     if: runner.os == 'Linux'
       run: |
         if [ ! -d "use/YandexSQIParser" ]; then
           git submodule add --force https://github.com/Al-Muhandis/YandexSQIParser.git use/YandexSQIParser || true
