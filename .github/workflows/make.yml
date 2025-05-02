@@ -25,22 +25,28 @@ jobs:
           - ubuntu-latest
           - windows-latest
     steps:
-    - name: Checkout
+    - name: Checkout repository
       uses: actions/checkout@v4
       with:
         submodules: recursive
         fetch-depth: 0
 
     - name: Initialize YandexSQIParser submodule
+     if: runner.os == 'Linux'
       run: |
         if [ ! -d "use/YandexSQIParser" ]; then
-          git submodule add https://github.com/Al-Muhandis/YandexSQIParser.git use/YandexSQIParser
+          git submodule add --force https://github.com/Al-Muhandis/YandexSQIParser.git use/YandexSQIParser || true
         fi
         git submodule update --init --recursive --force --remote
 
+    - name: Install dependencies (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y lazarus-ide-qt5 lazarus jq unzip
+
     - name: Build on Linux
       if: runner.os == 'Linux'
-      shell: bash
       run: bash .github/workflows/make.sh build
 
     - name: Build on Windows
@@ -48,7 +54,7 @@ jobs:
       shell: powershell
       run: pwsh -File .github/workflows/make.ps1 build
 
-    - name: Archive
+    - name: Archive artifacts
       if: runner.os == 'Windows'
       uses: actions/upload-artifact@v4
       with:

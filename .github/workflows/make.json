@@ -1,6 +1,6 @@
 {
     "app" : "src",
-    "lib" : "use",
+    "lib" : "src",
     "tst" : "tst",
     "opt" : "",
     "pkg" : [
