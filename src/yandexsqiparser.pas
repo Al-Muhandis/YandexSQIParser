@@ -7,6 +7,9 @@ unit yandexsqiparser;
 {$warn 5023 off : no warning about unused units}
 interface
 
+uses
+  yandexsqi, fclhttpclientbroker;
+
 implementation
 
 end.

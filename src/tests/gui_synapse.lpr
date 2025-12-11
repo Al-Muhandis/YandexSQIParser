@@ -3,7 +3,7 @@ program gui_synapse;
 {$mode objfpc}{$H+}
 
 uses
-  Interfaces, Forms, GuiTestRunner, testyandexsqi, synapsehttpclientbroker;
+  Interfaces, Forms, GuiTestRunner, testyandexsqi, ssl_openssl, synapsehttpclientbroker;
 
 {$R *.res}
 
